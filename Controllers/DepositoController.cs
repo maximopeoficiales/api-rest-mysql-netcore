@@ -24,14 +24,14 @@ namespace banco_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Deposito>>> GetDepositos()
         {
-            return await _context.Depositos.Include(c=>c.ClienteNavigation).ToListAsync();
+            return await _context.Depositos.Include(c => c.ClienteNavigation).ToListAsync();
         }
 
         // GET: api/Deposito/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Deposito>> GetDeposito(int id)
         {
-            var deposito = await _context.Depositos.FindAsync(id);
+            var deposito = await _context.Depositos.Include(c => c.ClienteNavigation).FirstOrDefaultAsync(d => d.Cliente == id);
 
             if (deposito == null)
             {
