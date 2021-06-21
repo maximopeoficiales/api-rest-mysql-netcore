@@ -1,0 +1,18 @@
+Como crear un api rest con mysql
+
+Requisitos tener instalado dotnet ef, y aspnet-codegenetor de forma global
+
+dotnet add package Pomelo.EntityFrameworkCore.MySql para mysql
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design para el diseño del context
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+ahora para crear el context
+
+dotnet ef dbcontext scaffold "Server=localhost;Database=banco_idat;User=root;Password=root;" "Pomelo.EntityFrameworkCore.MySql"
+
+ahora con el code generator 
+
+dotnet-aspnet-codegenerator controller -dc banco_idatContext -name DepositoController -m Deposito -async -api -actions -outDir Controllers -f
+
+Al ser un api es mejor repasar los endpoints algunos tienen json recycle
+
